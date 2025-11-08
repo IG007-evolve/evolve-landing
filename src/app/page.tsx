@@ -96,7 +96,10 @@ export default function Home() {
               <a href="#join" className="px-6 py-3 rounded-md bg-white text-black text-sm font-medium hover:bg-white/90 transition">
                 Get Early Access →
               </a>
-              <a href="#join" className="px-6 py-3 rounded-md border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition">
+              <a
+                href="/readiness-test"
+                className="px-5 py-3 rounded-lg border border-gray-300 text-sm font-medium hover:bg-gray-50 transition"
+              >
                 Take Readiness Test →
               </a>
             </motion.div>

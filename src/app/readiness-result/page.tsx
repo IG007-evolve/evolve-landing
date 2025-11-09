@@ -1,7 +1,7 @@
 import React from "react";
 import CopyButton from "../components/CopyButton";
-import ProfileBadge from "../components/ProfileBadge"; 
-import ScoreBox from "../components/ScoreBox"; 
+import ProfileBadge from "../components/ProfileBadge";
+import ScoreBox from "../components/ScoreBox";
 
 const GS_WEB_APP = "https://script.google.com/macros/s/AKfycbzLVt97-8pitORwo06T9A4VJ3UMNU2SNvEfDuhnRjDbQ3MIzHsqB___6lPdtf4zasNwhQ/exec";
 
@@ -72,19 +72,19 @@ export default async function ResultPage({
                     <div className="space-y-8">
                         {/* Score Grid */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-  {[
-    ["LC_Understanding", data["LC_Understanding"]],
-    ["LC_Structure", data["LC_Structure"]],
-    ["LC_Edge_Cases", data["LC_Edge_Cases"]],
-    ["LC_Reasoning", data["LC_Reasoning"]],
-    ["SD_Clarity", data["SD_Clarity"]],
-    ["SD_Scalability", data["SD_Scalability"]],
-    ["SD_Tradeoffs", data["SD_Tradeoffs"]],
-    ["SD_Composure", data["SD_Composure"]],
-  ].map(([label, val]) => (
-    <ScoreBox key={label} label={label} value={Number(val || 0)} />
-  ))}
-</div>
+                            {[
+                                ["LC_Understanding", data["LC_Understanding"]],
+                                ["LC_Structure", data["LC_Structure"]],
+                                ["LC_Edge_Cases", data["LC_Edge_Cases"]],
+                                ["LC_Reasoning", data["LC_Reasoning"]],
+                                ["SD_Clarity", data["SD_Clarity"]],
+                                ["SD_Scalability", data["SD_Scalability"]],
+                                ["SD_Tradeoffs", data["SD_Tradeoffs"]],
+                                ["SD_Composure", data["SD_Composure"]],
+                            ].map(([label, val]) => (
+                                <ScoreBox key={label} label={label} value={Number(val || 0)} />
+                            ))}
+                        </div>
 
                         {/* Total Score */}
                         <div className="rounded-xl border border-white/10 p-5 bg-white/[0.04]">
@@ -110,14 +110,17 @@ export default async function ResultPage({
 
                         <div className="rounded-xl border border-white/10 p-6 bg-white/[0.02] text-center space-y-4">
                             <p className="text-white/70 text-[15px]">
-                                Want a free personalized improvement plan based on your score?
+                                Want a personalized improvement plan based on your specific score breakdown?
                             </p>
                             <a
-                                href="https://evolve-landing-ig.vercel.app/"
+                                href="/join"
                                 className="inline-block px-6 py-3 rounded-md bg-white text-black font-medium hover:bg-white/90 transition"
                             >
-                                Get My Plan
+                                Get My Personalized Plan →
                             </a>
+                            <p className="text-xs text-white/40">
+                                (No payment required. Just answer a few questions.)
+                            </p>
                         </div>
 
 

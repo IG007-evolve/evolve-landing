@@ -3,7 +3,7 @@ import CopyButton from "../components/CopyButton";
 import ProfileBadge from "../components/ProfileBadge"; 
 import ScoreBox from "../components/ScoreBox"; 
 
-const GS_WEB_APP = "https://script.google.com/macros/s/AKfycbzLVt97-8pitORwo06T9A4VJ3UMNU2SNvEfDuhnRjDbQ3MIzHsqB___6lPdtf4zasNwhQ/exec";
+const GS_WEB_APP = "https://script.google.com/macros/s/AKfycbz0USDeUxBek09A6pk9xIkEH0kut7bDwtvZZo5PEV7GI13scbbD7gt2Zec4gm4fFrNUFA/exec";
 
 export default async function ResultPage({
     searchParams,

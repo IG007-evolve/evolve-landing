@@ -1,47 +1,29 @@
-// app/readiness-test/page.tsx
-import Link from "next/link";
-
-export default function ReadinessTestIntro() {
+export default function ReadinessTestPage() {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center px-6 md:px-10">
-      <div className="max-w-3xl mx-auto py-20">
+    <div className="min-h-screen bg-black text-white px-6 md:px-10 py-20 text-center">
+      <h1 className="text-3xl md:text-4xl font-semibold mb-6">
+        The Interview Readiness Test
+      </h1>
+      <p className="text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
+        This 6-minute diagnostic simulates how you actually think and communicate in real interviews.
+        You’ll answer scenario-based questions designed to test clarity, reasoning, and tradeoff communication — not just DSA.
+      </p>
 
-        <h1 className="text-4xl font-semibold tracking-tight mb-6">
-          The Readiness Test
-        </h1>
+      <ul className="text-white/60 max-w-md mx-auto text-left mb-10 space-y-2">
+        <li>✅ Tests clarity, reasoning, and composure under pressure</li>
+        <li>✅ Get a personalized readiness score (Not Ready / Leveling / Ready)</li>
+        <li>✅ Instantly receive your full AI-generated report via email</li>
+      </ul>
 
-        <p className="text-white/70 text-lg leading-relaxed mb-10">
-          This short assessment measures your clarity of thought, problem reasoning,
-          communication, and system design maturity. You'll receive a personalized
-          score and improvement roadmap immediately after submission.
-        </p>
+      <a
+        href="https://forms.gle/uoHs5FRNkXKDcaCP6"
+        target="_blank"
+        className="inline-block px-6 py-3 rounded-md bg-white text-black font-medium hover:bg-white/90 transition"
+      >
+        Start the Test →
+      </a>
 
-        <div className="border border-white/10 bg-white/[0.03] rounded-xl p-8 space-y-5 text-white/90">
-          <div className="space-y-2">
-            <div className="text-base font-medium">What’s inside:</div>
-            <ul className="space-y-2 text-white/70 text-sm leading-relaxed">
-              <li>• Self-assessment (1–5) — 1 minute</li>
-              <li>• LC mini problem — Explain approach (no code)</li>
-              <li>• System design micro prompt — 6–10 sentences</li>
-            </ul>
-          </div>
-
-          <div className="pt-3 border-t border-white/5 text-sm text-amber-400/90">
-            Scoring is strict. Vague or generic answers typically receive low scores.
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <Link
-            href="https://forms.gle/ujjrNM6YPRUPagzZ8"
-            target="_blank"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-white text-black text-base font-medium hover:bg-white/90 transition"
-          >
-            Begin Readiness Test →
-          </Link>
-        </div>
-
-      </div>
+      <p className="text-xs text-white/40 mt-4">Takes ~6 minutes • No login required</p>
     </div>
   );
 }

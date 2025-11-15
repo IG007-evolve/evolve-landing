@@ -113,10 +113,10 @@ export default async function ResultPage({
                                 Want a personalized improvement plan based on your specific score breakdown?
                             </p>
                             <a
-                                href="/join"
-                                className="inline-block px-6 py-3 rounded-md bg-white text-black font-medium hover:bg-white/90 transition"
+                                href="/sample-plan"
+                                className="px-5 py-3 rounded-md bg-white text-black font-medium hover:bg-white/90 transition"
                             >
-                                Get My Personalized Plan →
+                                View Sample Growth Plan →
                             </a>
                             <p className="text-xs text-white/40">
                                 (No payment required. Just answer a few questions.)

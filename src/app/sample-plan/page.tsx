@@ -6,19 +6,24 @@ import { motion } from "framer-motion";
 //
 // Animation Variants
 //
-const fadeIn = {
+//
+// Animation Variants (TS-safe)
+//
+import type { Variants } from "framer-motion";
+
+const fadeIn: Variants = {
     hidden: { opacity: 0, y: 8 },
     show: { opacity: 1, y: 0, transition: { duration: 0.55 } }
 };
 
-const fadeInSlow = {
+const fadeInSlow: Variants = {
     hidden: { opacity: 0, y: 12 },
     show: { opacity: 1, y: 0, transition: { duration: 0.75 } }
 };
 
-const floatIn = {
+const floatIn: Variants = {
     hidden: { opacity: 0, y: 12, scale: 0.97 },
-    show: (i: number) => ({
+    show: (i: number = 0) => ({
         opacity: 1,
         y: 0,
         scale: 1,
@@ -30,14 +35,63 @@ const floatIn = {
     })
 };
 
+
 export default function SamplePlanPage() {
     const weeks = [
-        { id: 1, title: "Clarity & Structure", color: "from-emerald-400 to-emerald-600" },
-        { id: 2, title: "Edge Cases", color: "from-yellow-400 to-yellow-600" },
-        { id: 3, title: "Scalability", color: "from-sky-400 to-sky-600" },
-        { id: 4, title: "Pacing", color: "from-indigo-400 to-indigo-600" },
-        { id: 5, title: "Synthesis", color: "from-violet-400 to-violet-600" },
-        { id: 6, title: "Interview Ready", color: "from-pink-400 to-pink-600" }
+        {
+            id: 1,
+            title: "Clarity & Structure",
+            color: "from-emerald-400 to-emerald-600",
+            stars: 2,
+            time: "45–60 min",
+            skills: ["Clarity", "Framing"],
+            intensity: "Medium"
+        },
+        {
+            id: 2,
+            title: "Edge Cases",
+            color: "from-yellow-400 to-yellow-600",
+            stars: 3,
+            time: "50–70 min",
+            skills: ["Robustness", "Invariants"],
+            intensity: "Medium"
+        },
+        {
+            id: 3,
+            title: "Scalability",
+            color: "from-sky-400 to-sky-600",
+            stars: 4,
+            time: "60–75 min",
+            skills: ["System Design", "Tradeoffs"],
+            intensity: "High"
+        },
+        {
+            id: 4,
+            title: "Pacing",
+            color: "from-indigo-400 to-indigo-600",
+            stars: 2,
+            time: "40–55 min",
+            skills: ["Conciseness", "Composure"],
+            intensity: "Medium"
+        },
+        {
+            id: 5,
+            title: "Synthesis",
+            color: "from-violet-400 to-violet-600",
+            stars: 4,
+            time: "60–90 min",
+            skills: ["Integration", "Strategy"],
+            intensity: "High"
+        },
+        {
+            id: 6,
+            title: "Interview Ready",
+            color: "from-pink-400 to-pink-600",
+            stars: 5,
+            time: "3 full mocks",
+            skills: ["Execution", "Pressure"],
+            intensity: "Very High"
+        }
     ];
 
     return (
@@ -120,6 +174,7 @@ export default function SamplePlanPage() {
                 </section>
 
                 {/* 6-WEEK EXAMPLE GRID */}
+                {/* 6-WEEK EXAMPLE GRID — UPDATED WITH DIFFICULTY, TIME, SKILLS */}
                 <section className="mt-16">
                     <motion.div
                         variants={fadeIn}
@@ -129,25 +184,103 @@ export default function SamplePlanPage() {
                     >
                         <h3 className="text-xl font-semibold">6-Week Growth Plan (example)</h3>
                         <p className="text-white/70 mt-2">
-                            Each week contains 3 focused exercises and a 30-min review. Doable, measurable, repeatable.
+                            Each week contains specific goals, difficulty levels, intensity markers and time estimates.
                         </p>
 
                         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {weeks.map((w) => (
-                                <div
-                                    key={w.id}
-                                    className="rounded-lg p-4 border border-white/6 bg-black/30"
-                                >
-                                    <div className="text-sm text-white/60">Week {w.id}</div>
-                                    <div className="font-semibold mt-1">{w.title}</div>
 
-                                    <ul className="mt-3 text-white/70 text-sm space-y-1">
-                                        <li>• One focused micro-task</li>
-                                        <li>• One timed prompt</li>
-                                        <li>• Weekly review checklist</li>
-                                    </ul>
-                                </div>
+                            {weeks.map((w, i) => (
+                                <motion.div
+                                    key={i}
+                                    custom={i}
+                                    variants={floatIn}
+                                    initial="hidden"
+                                    animate="show"
+                                    viewport={{ once: true }}
+                                    className="rounded-2xl border border-white/10 bg-black/40 p-5 hover:-translate-y-1 transition-all duration-300"
+                                >
+                                    {/* Header */}
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <div className="text-sm text-white/60">Week {w.id}</div>
+                                            <div className="font-semibold text-lg">{w.title}</div>
+                                        </div>
+
+                                        {/* Icon */}
+                                        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${w.color} flex items-center justify-center`}>
+                                            <div className="w-2.5 h-2.5 bg-white rounded-full" />
+                                        </div>
+                                    </div>
+
+                                    {/* Difficulty */}
+                                    <div className="mt-4">
+                                        <div className="text-xs text-white/60">Difficulty</div>
+
+                                        <div className="flex mt-1">
+                                            {"★★★★★☆☆☆☆☆"
+                                                .slice(0, w.stars + (5 - w.stars)) /* safety */
+                                                .split("")
+                                                .map((s, idx) => (
+                                                    <span
+                                                        key={idx}
+                                                        className={
+                                                            idx < w.stars
+                                                                ? "text-yellow-400 text-base"
+                                                                : "text-white/20 text-base"
+                                                        }
+                                                    >
+                                                        ★
+                                                    </span>
+                                                ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Time */}
+                                    <div className="mt-3">
+                                        <div className="text-xs text-white/60">Time Required</div>
+                                        <div className="text-sm text-white/80 mt-1">{w.time}</div>
+                                    </div>
+
+                                    {/* Skills */}
+                                    <div className="mt-3">
+                                        <div className="text-xs text-white/60">Skills</div>
+                                        <div className="flex flex-wrap gap-2 mt-1">
+                                            {w.skills.map((s: string) => (
+                                                <span
+                                                    key={s}
+                                                    className="px-2 py-1 rounded-md text-xs bg-white/10 text-white/70"
+                                                >
+                                                    {s}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Intensity */}
+                                    <div className="mt-3">
+                                        <div className="text-xs text-white/60">Intensity</div>
+                                        <div className="text-sm text-white/80 mt-1">{w.intensity}</div>
+                                    </div>
+
+                                    {/* Sparkline */}
+                                    <div className="mt-4">
+                                        <MiniSparkline />
+                                    </div>
+
+                                    {/* Progress bar */}
+                                    <div className="mt-4">
+                                        <div className="text-xs text-white/60">Progress</div>
+                                        <div className="mt-1 h-2 rounded-full bg-white/10">
+                                            <div
+                                                className={`h-2 rounded-full bg-gradient-to-r ${w.color}`}
+                                                style={{ width: `${35 + w.id * 10}%` }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                </motion.div>
                             ))}
+
                         </div>
                     </motion.div>
                 </section>
